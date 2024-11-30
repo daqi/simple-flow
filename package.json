@@ -1,0 +1,10 @@
+{
+    "name": "simple-flow",
+    "type": "module",
+    "scripts": {
+        "dev": "pnpm run /dev:.*/",
+        "dev:client": "pnpm --filter client run dev",
+        "dev:server": "pnpm --filter server run dev"
+    },
+    "packageManager": "pnpm@9.14.4"
+}
