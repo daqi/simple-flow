@@ -1,12 +1,17 @@
 import { serve } from '@hono/node-server';
 import { Hono } from 'hono';
 import db from './db.js';
+import { LOG, IF, EXEC } from './exec.js';
+
+console.log(LOG({ a: 1 }));
+console.log(IF('a === 1'));
+console.log(EXEC('a + 1', { a: 1 }));
 
 const app = new Hono();
 
 const store = {
-    count: 0
-}
+    count: 0,
+};
 
 app.get('/', (c) => {
     return c.json({
@@ -20,14 +25,13 @@ app.post('/', (c) => {
     });
 });
 
-
 app.post('/email', async (c) => {
     const res = await db.user.create({
         data: {
             email: 'daqidaqi@qq.com',
             name: 'daqidaqi',
-        }
-    })
+        },
+    });
     return c.json({
         data: res,
     });
